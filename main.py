@@ -22,6 +22,7 @@ def banner():
     
 class Pasien:
     def __init__(self, tipe, nama, kelamin, tanggal_lahir, alamat, nomor_telepon, gejala):
+        self.tanggal_daftar = self.tanggal_pendaftaran()
         self.tipe = tipe
         self.nama = nama
         self.kelamin = kelamin
@@ -36,10 +37,12 @@ class Pasien:
         usia = today.year - tanggal_lahir.year - ((today.month, today.day) < (tanggal_lahir.month, tanggal_lahir.day))
         return usia
     
-    def antrian(self):
+    def tanggal_pendaftaran(self):
         now = datetime.datetime.now()
-        noantrian = now.strftime("%y/%m/%d, %H:%M %p")
-        return noantrian
+        return now.strftime("%y/%m/%d, %H:%M %p")
+
+    def antrian(self):
+        return self.tanggal_daftar
 
     def searchbyname(daftar_pasien, nama_target):
         for pasien in daftar_pasien:
